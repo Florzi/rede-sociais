@@ -4,17 +4,25 @@ async function quantidadeUsuarios() {
     const dados = await res.json()
     const nomeDasRedes = Object.keys(dados)
     const quantidadeUsuarios = Object.values(dados)
-    console.log(dados)
+
     const data = [
         {
         
         x: nomeDasRedes,
         y: quantidadeUsuarios,
-        type: 'bar'
-        
-        }
-        ]
+        type: 'bar',
+        marker: {
+        color: getComputedStyle(document.body).getPropertyValue('--primary-colo')
+             }
 
+        }
+    ]
+        const grafico = document.createElement('div')
+        grafico.className = 'grafico'
+
+        document.getElementById('graficos-container').appendChild(grafico)
+        Plotly.newPlot(grafico,data)
+        console.log(dados)
 
     }
     quantidadeUsuarios()
